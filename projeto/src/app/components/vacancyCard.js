@@ -10,12 +10,13 @@ export default function VacancyCard({
 }) {
   return (
     <div className="relative w-full max-w-sm rounded-2xl overflow-hidden shadow-md group">
-      <div className="relative h-48 w-full">
+      <div className="w-full">
         <Image
           src={image}
           alt={title}
-          fill
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          width={400}
+          height={192}
+          className="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
         />
       </div>
       <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 via-black/30 to-transparent px-4 py-3 text-white flex items-center justify-between">
