@@ -1,71 +1,31 @@
 'use client';
+import { useRouter } from 'next/navigation';
 
-import { useState } from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
-
-const jobs = [
-  {
-    title: 'Pintor',
-    description: 'Precisando de um pintor para pintar portão na Rua da Paz, Recife.',
-    price: 'R$ 200,00',
-    image: '/pintor.jpg',
-  },
-  {
-    title: 'Eletricista',
-    description: 'Revisão completa da parte elétrica de um sobrado no Espinheiro.',
-    price: 'R$ 300,00',
-    image: '/eletricista.jpg',
-  },
-  {
-    title: 'Salva-vidas',
-    description: 'Plantão de 6h em piscina de condomínio no bairro Boa Viagem.',
-    price: 'R$ 250,00',
-    image: '/salva-vidas.jpg',
-  },
-];
-
-export default function Slider() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const slideWidth = 300; 
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? jobs.length - 1 : prev - 1));
-  };
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev === jobs.length - 1 ? 0 : prev + 1));
-  };
+export default function Home() {
+  const router = useRouter();
 
   return (
-    <div className="sliderWrapper">
-      <button className="arrow left" onClick={handlePrev}>
-        <ArrowLeft />
-      </button>
-
-      <div
-        className="slider"
-        style={{
-          transform: `translateX(${-currentIndex * slideWidth}px)`,
-        }}
-      >
-        {jobs.map((job, idx) => (
-          <div
-            key={idx}
-            className={`slide ${idx === currentIndex ? 'active' : ''}`}
-          >
-            <img src={job.image} alt={job.title} />
-            <div className="slideContent">
-              <h3>{job.title}</h3>
-              <p>{job.description}</p>
-              <p>{job.price}</p>
-            </div>
-          </div>
-        ))}
+    <div className="w-[375px] h-[667px] bg-white rounded-[2rem] shadow-lg border mx-auto my-10 overflow-hidden">
+      <div className="flex flex-col items-center justify-center h-full p-6">
+        <h1 className="text-3xl font-bold text-gray-800">
+          Trampa<span className="text-purple-600">i</span>
+        </h1>
+        <p className="text-center text-gray-600 mt-4 mb-8">
+          Você está procurando trabalho ou quer contratar?
+        </p>
+        <button
+          onClick={() => router.push('/freelancer')}
+          className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-xl mb-4"
+        >
+          Sou Freelancer
+        </button>
+        <button
+          onClick={() => router.push('/employer')}
+          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 rounded-xl"
+        >
+          Quero Contratar
+        </button>
       </div>
-
-      <button className="arrow right" onClick={handleNext}>
-        <ArrowRight />
-      </button>
     </div>
   );
 }
